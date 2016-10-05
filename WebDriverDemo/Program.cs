@@ -15,19 +15,10 @@ namespace WebDriverDemo
         static void Main(string[] args)
         {
             IWebDriver driver = new ChromeDriver(@"D:\Drivers\webdriver\");
-            driver.Url = "http://cn.bing.com";
+            driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
 
-            var searchBox = driver.FindElement(By.Id("sb_form_q"));
-            searchBox.SendKeys("pluralsight");
-
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-
-            var imagesLink = driver.FindElement(By.Id("scpl0"));
-            imagesLink.Click();
-
-            var div = driver.FindElement(By.ClassName("dg_u"));
-            var firstImageLink = div.FindElements(By.TagName("a"))[0];
-            firstImageLink.Click();
+            var radioButton = driver.FindElements(By.Name("color"))[0];
+            radioButton.Click();
         }
     }
 }
