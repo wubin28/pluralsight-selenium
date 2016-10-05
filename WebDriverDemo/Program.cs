@@ -17,9 +17,9 @@ namespace WebDriverDemo
             IWebDriver driver = new ChromeDriver(@"D:\Drivers\webdriver\");
             driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
 
-            var checkBox = driver.FindElement(By.Id("check1"));
-            checkBox.Click();
-            checkBox.Click();
+            var select = driver.FindElement(By.Id("select1"));
+            var tomOption = select.FindElements(By.TagName("option"))[2];
+            tomOption.Click();
         }
     }
 }
