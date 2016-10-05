@@ -17,15 +17,9 @@ namespace WebDriverDemo
             IWebDriver driver = new ChromeDriver(@"D:\Drivers\webdriver\");
             driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
 
-            var radioButtons = driver.FindElements(By.Name("color"));
-            foreach(var radioButton in radioButtons)
-            {
-                if (radioButton.Selected)
-                {
-                    Console.WriteLine(radioButton.GetAttribute("value"));
-                }
-            }
-            
+            var checkBox = driver.FindElement(By.Id("check1"));
+            checkBox.Click();
+            checkBox.Click();
         }
     }
 }
