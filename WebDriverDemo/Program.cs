@@ -1,13 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebDriverDemo
 {
@@ -15,11 +8,20 @@ namespace WebDriverDemo
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new ChromeDriver(@"D:\Drivers\webdriver\");
-            driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
+            IWebDriver driver = new ChromeDriver(@"d:\Drivers\webdriver");
+            driver.Url = "https://www.google.com";
 
-            var row = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td[2]/table/tbody/tr[2]/td"));
-            Console.WriteLine(row.Text);
+            var searchBox = driver.FindElement(By.Id("lst-ib"));
+            searchBox.SendKeys("pluralsight");
+            searchBox.Submit();
+
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
+            var imagesLink = driver.FindElement(By.XPath("//*[@id=\"hdtb-msb\"]/div[3]/a"));
+            imagesLink.Click();
+
+            var firstImageLink = driver.FindElement(By.XPath("//*[@id=\"rg_s\"]/div[1]/a/img"));
+            firstImageLink.Click();
         }
     }
 }
