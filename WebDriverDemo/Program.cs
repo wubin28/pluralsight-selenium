@@ -18,9 +18,7 @@ namespace WebDriverDemo
             IWebDriver driver = new ChromeDriver(@"D:\Drivers\webdriver\");
             driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
 
-            var outerTable = driver.FindElement(By.TagName("table"));
-            var innerTable = outerTable.FindElement(By.TagName("table"));
-            var row = innerTable.FindElements(By.TagName("td"))[1];
+            var row = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td[2]/table/tbody/tr[2]/td"));
             Console.WriteLine(row.Text);
         }
     }
