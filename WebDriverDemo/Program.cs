@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,9 @@ namespace WebDriverDemo
             driver.Url = @"file:///D:/ben/pluralsight-selenium/WebDriverDemo/WebDriverDemo/TestPage.html";
 
             var select = driver.FindElement(By.Id("select1"));
-            var tomOption = select.FindElements(By.TagName("option"))[2];
-            tomOption.Click();
+
+            var selectElement = new SelectElement(select);
+            selectElement.SelectByText("Frank");
         }
     }
 }
