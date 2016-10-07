@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace WebDriverDemo
@@ -15,9 +16,14 @@ namespace WebDriverDemo
             searchBox.SendKeys("pluralsight");
             searchBox.Submit();
 
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
 
-            var imagesLink = driver.FindElement(By.XPath("//*[@id=\"hdtb-msb\"]/div[3]/a"));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            var imagesLink = wait.Until(d =>
+                            {
+                                return driver.FindElement(By.XPath("//*[@id=\"hdtb-msb\"]/div[2]/a"));
+                            });
+
             imagesLink.Click();
 
             var firstImageLink = driver.FindElement(By.XPath("//*[@id=\"rg_s\"]/div[1]/a/img"));
