@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Firefox;
 using System;
 
 namespace WebDriverDemo
@@ -9,8 +8,8 @@ namespace WebDriverDemo
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new ChromeDriver(@"d:\Drivers\webdriver");
-            driver.Url = "https://www.google.com";
+            IWebDriver driver = new FirefoxDriver();
+            driver.Url = "http://www.google.com";
 
             var searchBox = driver.FindElement(By.Id("lst-ib"));
             searchBox.SendKeys("pluralsight");
@@ -18,14 +17,12 @@ namespace WebDriverDemo
 
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            var imagesLink = wait.Until(d =>
-                            {
-                                return driver.FindElement(By.XPath("//*[@id=\"hdtb-msb\"]/div[2]/a"));
-                            });
+            var dropdownItem = driver.FindElement(By.XPath("/html/body/div[1]/div[3]/form/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div/ul/li[1]/div/div[1]"));
+            dropdownItem.Click();
 
-            imagesLink.Click();
-
+            var imageLink = driver.FindElement(By.CssSelector("div.hdtb-mitem:nth-child(5) > a:nth-child(1)"));
+            imageLink.Click();
+            
             var firstImageLink = driver.FindElement(By.XPath("//*[@id=\"rg_s\"]/div[1]/a/img"));
             firstImageLink.Click();
         }
