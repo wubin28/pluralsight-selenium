@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 using System;
 
 namespace WebDriverDemo
@@ -8,7 +8,8 @@ namespace WebDriverDemo
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new FirefoxDriver();
+            IWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"),
+                DesiredCapabilities.Firefox());
             driver.Url = "http://www.google.com";
 
             var searchBox = driver.FindElement(By.Id("lst-ib"));
