@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Firefox;
 using System;
 
 namespace WebDriverDemo
@@ -8,23 +8,18 @@ namespace WebDriverDemo
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"),
-                DesiredCapabilities.Firefox());
-            driver.Url = "http://www.google.com";
+            IWebDriver driver = new FirefoxDriver();
+            driver.Url = "http://cn.bing.com";
 
-            var searchBox = driver.FindElement(By.Id("lst-ib"));
+            var searchBox = driver.FindElement(By.Id("sb_form_q"));
             searchBox.SendKeys("pluralsight");
-            searchBox.Submit();
 
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
 
-            var dropdownItem = driver.FindElement(By.XPath("/html/body/div[1]/div[3]/form/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div/ul/li[1]/div/div[1]"));
-            dropdownItem.Click();
-
-            var imageLink = driver.FindElement(By.CssSelector("div.hdtb-mitem:nth-child(5) > a:nth-child(1)"));
+            var imageLink = driver.FindElement(By.CssSelector("#scpl0"));
             imageLink.Click();
-            
-            var firstImageLink = driver.FindElement(By.XPath("//*[@id=\"rg_s\"]/div[1]/a/img"));
+
+            var firstImageLink = driver.FindElement(By.CssSelector("div.dg_b:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > img:nth-child(1)"));
             firstImageLink.Click();
         }
     }
