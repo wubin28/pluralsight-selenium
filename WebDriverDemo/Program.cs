@@ -9,7 +9,7 @@ namespace WebDriverDemo
         static void Main(string[] args)
         {
             IWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"),
-                DesiredCapabilities.Firefox());
+                new DesiredCapabilities("firefox", "", new Platform(PlatformType.Mac)));
             driver.Url = "http://cn.bing.com";
 
             var searchBox = driver.FindElement(By.Id("sb_form_q"));
